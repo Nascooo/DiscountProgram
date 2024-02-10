@@ -18,19 +18,8 @@ public class CustomerDiscountStrategy implements DiscountStrategy {
 
     @Override
     public double applyDiscount(Bill bill) {
-        List<Item> discountedItems = bill.getItems().stream().filter(el -> ItemCategory.NON_GROCERIES.equals(el.getCategory())).toList();
-        List<Item> unDiscountedItems = bill.getItems().stream().filter(el -> ItemCategory.GROCERIES.equals(el.getCategory())).toList();
-
         BigDecimal total = new BigDecimal(0);
-        for (Item item : discountedItems) {
-            total = total.add(BigDecimal.valueOf(item.getPrice()));
-        }
-        BigDecimal hundreds = total.divide(new BigDecimal(100)).setScale(0, RoundingMode.DOWN);
-        BigDecimal totalDiscount = hundreds.multiply(discountNumber);
-        //Subtract Discount from Total
-        total = total.subtract(totalDiscount);
-
-        for (Item item : unDiscountedItems) {
+        for (Item item : bill.getItems()) {
             total = total.add(BigDecimal.valueOf(item.getPrice()));
         }
 

@@ -14,10 +14,10 @@ import java.util.Set;
 @Service
 public class StrategyConsumerService {
 
-    Map<UserType, DiscountStrategy> map = new HashMap<>();
+    private final Map<UserType, DiscountStrategy> map = new HashMap<>();
 
     public StrategyConsumerService(Set<DiscountStrategy> strategies) {
-        for (DiscountStrategy strategy : strategies) {
+        for (   DiscountStrategy strategy : strategies) {
             map.put(strategy.getStrategyName(), strategy);
         }
     }
@@ -26,4 +26,7 @@ public class StrategyConsumerService {
         return map.get(user.getUserType()).applyDiscount(bill);
     }
 
+    public Map<UserType, DiscountStrategy> getMap() {
+        return map;
+    }
 }

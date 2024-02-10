@@ -13,6 +13,9 @@ import java.util.List;
 @Component
 public class LoyalCustomerDiscountStrategy implements DiscountStrategy {
 
+    /**
+     * Loyal Customer here is recognized from the user type not when it is registered
+     */
     private final BigDecimal discountNumber = new BigDecimal(5);
 
     @Override

@@ -21,6 +21,9 @@ public class User {
 
     private String name;
 
+    /**
+     * User Type is the Main key to difference between Users
+     */
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
